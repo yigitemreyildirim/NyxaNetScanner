@@ -12,6 +12,7 @@ def getUserInput():
 
     if not user_input.ip_address:
         print("Please enter an IP address")
+        exit()
 
     return user_input
 
