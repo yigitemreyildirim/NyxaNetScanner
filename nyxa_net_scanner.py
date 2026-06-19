@@ -1,8 +1,32 @@
+# The code required to run: python nyxa_mac_changer.py -i 192.168.1.1/24
+# For python3 = pip3 install scapy
+
 import scapy.all as scapy
+import optparse as opt
 
-arp_request_packet = scapy.ARP(pdst="192.168.1.1")
-brodcast_packet = scapy.Ether(dst ="ff:ff:ff:ff:ff")
+def getUserInput():
+    parse_object = opt.OptionParser()
+    parse_object.add_option("-ip","--ipaddress",dest="ip_address",help="Enter IP address")
 
-combined_packet = brodcast_packet/arp_request_packet
+    (user_input,arguments) = parse_object.parse_args()
 
-result = scapy.srp(combined_packet, timeout=1)
+    if not user_input.ip_address:
+        print("Please enter an IP address")
+
+    return user_input
+
+
+
+def scan_network(ip):
+    arp_request_packet = scapy.ARP(pdst=ip)
+    brodcast_packet = scapy.Ether(dst="ff:ff:ff:ff:ff")
+    combined_packet = brodcast_packet/arp_request_packet
+    (answered_list, unanswered_list) = scapy.srp(combined_packet, timeout=1)
+    answered_list.summary()
+
+
+
+user_ip_address = getUserInput().ip_address
+scan_network(user_ip_address)
+
+
