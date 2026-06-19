@@ -6,7 +6,7 @@ import optparse as opt
 
 def getUserInput():
     parse_object = opt.OptionParser()
-    parse_object.add_option("-i","--ipaddress",dest="ip_address",help="Enter IP address")
+    parse_object.add_option("-i", "--ipaddress", dest="ip_address", help="Enter IP address")
 
     (user_input,arguments) = parse_object.parse_args()
 
