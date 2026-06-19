@@ -1,4 +1,4 @@
-# The code required to run: python nyxa_mac_changer.py -i 192.168.1.1/24
+# The code required to run: python nyxa_net_scanner.py -i 192.168.1.1/24
 # For python3 = pip3 install scapy
 
 import scapy.all as scapy
